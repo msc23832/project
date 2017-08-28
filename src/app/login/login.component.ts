@@ -25,10 +25,12 @@ export class LoginComponent implements OnInit {
   @ViewChild('loginForm') loginForm: NgForm;
 
   login() {
+    console.log(this.Login);
       this.LoginService.doLogin(this.Login).subscribe((res) => {
+        console.log(res);
         if (res.success) {
           localStorage.setItem('token', res.token);
-          this.router.navigate(['support', 'issue-list']);
+          //this.router.navigate(['company']);
         } else {
           Materialize.toast(res.message, 1000);
         }

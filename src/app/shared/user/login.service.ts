@@ -11,7 +11,9 @@ export class LoginService {
   constructor(private http : Http) { }
 
   doLogin(body): Observable<any> {
+    console.log(body);
     let bodyString = JSON.stringify(body);
+    console.log(bodyString);
     let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers });
     return this.http.post(`${environment.apiUrl}/login/doLogin`, bodyString , options)
