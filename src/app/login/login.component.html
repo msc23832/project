@@ -1,0 +1,19 @@
+<div class="row">
+    <form class="col s12">
+        <div class="col s12 m4 offset-m4 image-responsive center">
+            <img class="responsive-img circle" src="http://lorempixel.com/150/150">
+        </div>
+        <div class="input-field col s12 m4 offset-m4">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="email" name="Email" type="email" [(ngModel)]="Login.Email" required class="validate">
+            <label for="email" data-error="Please Input Valid E-mail">E-mail</label>
+        </div>
+        <div class="input-field col s12 m4 offset-m4">
+            <i class="material-icons prefix">lock</i>
+            <input id="password" name="Password" type="password" [(ngModel)]="Login.Password" required class="validate" pattern="\d{5}">
+            <!--minlength="5"-->
+            <label for="password" data-error="Please Input Valid Password">Password</label>
+        </div>
+    </form>
+    <a class="waves-effect waves-light btn col s10 offset-s1 m4 offset-m4" (click)="login()">LOGIN</a>
+</div>

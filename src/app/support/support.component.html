@@ -1,0 +1,30 @@
+<nav>
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+    <div class="nav-wrapper light-blue darken-3">
+        <a routerLink="/support" class="brand-logo center">SUPPORT</a>
+        <ul class="left hide-on-med-and-down">
+            <li><a routerLink="/support/companylist">Company</a></li>
+            <li><a routerLink="/support/customer">Customer</a></li>
+            <li><a routerLink="/support/user">User</a></li>
+            <li><a routerLink="/support/issue">Issue</a></li>
+            <!--<li><a class="dropdown-button" href="#!" data-activates="dropdown1">Support<i class="material-icons right">arrow_drop_down</i></a></li>-->
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li><a routerLink="/home"><i class="material-icons left">home</i>Home</a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+            <li><a routerLink="/home"><i class="material-icons left">home</i>Home</a></li>
+            <li><a routerLink="/support/companylist">Company</a></li>
+            <li><a routerLink="/support/customer">Customer</a></li>
+            <li><a routerLink="/support/user">User</a></li>
+            <li><a routerLink="/support/issue">Issue</a></li>
+            <!--<li><a routerLink="/sass"><i class="material-icons left">home</i>Home</a></li>
+                    <li><a routerLink="/badges"><i class="material-icons left">assignment</i>Badges</a></li>
+                    <li><a routerLink="/collapsible"><i class="material-icons left">note_add</i>Collapsible</a></li>
+                    <li><a routerLink="/mobile"><i class="material-icons left">phone_iphone</i>Mobile</a></li>-->
+        </ul>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>

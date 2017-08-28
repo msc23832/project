@@ -1,0 +1,28 @@
+<div class="row">
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">vpn_key</i>
+                <input id="code" name="code" type="text" [(ngModel)]="Comp.code" required class="validate" pattern="\d{3}">
+                <label for="code" data-error="Please Input Valid Code">Code</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="name" name="name" type="text" [(ngModel)]="Comp.name" required class="validate">
+                <!--minlength="5"-->
+                <label for="name" data-error="Please Input Valid Name">Name</label>
+            </div>
+        </div>
+    </form>
+    <form class="col s12">
+        <div class="row">
+
+            <a class="waves-effect waves-light btn green" (click)="onSubmit()">Submit</a>
+
+            <a class="waves-effect waves-light btn red" routerLink='/support/companylist'>Back</a>
+
+        </div>
+    </form>
+</div>
