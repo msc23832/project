@@ -9,7 +9,15 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class CompanyService {
 
-  constructor(private http : Http) { }
+  options: RequestOptions;
+
+  constructor(private http : Http) { 
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': 'bearer ' + localStorage.getItem('token')
+    });
+    this.options = new RequestOptions({ headers: headers });
+  }
 
   loadItem(): Observable<any[]> {
     return this.http.get(`${environment.apiUrl}/company`)
@@ -21,9 +29,7 @@ export class CompanyService {
 
   getItem(id): Observable<any[]> {
     let bodyString = JSON.stringify(id);
-    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    let options = new RequestOptions({ headers: headers });
-    return this.http.get(`${environment.apiUrl}/company/findByID/${id}` , options)
+    return this.http.get(`${environment.apiUrl}/company/findByID/${id}` , this.options)
       .map((res: Response) => {
         return res.json()
       })
@@ -32,9 +38,7 @@ export class CompanyService {
 
   searchItem(body): Observable<any> {
     let bodyString = JSON.stringify(body);
-    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    let options = new RequestOptions({ headers: headers });
-    return this.http.post(`${environment.apiUrl}/company/search`, bodyString , options)
+    return this.http.post(`${environment.apiUrl}/company/search`, bodyString , this.options)
       .map((res: Response) => {
         return res.json()
       })
@@ -43,9 +47,7 @@ export class CompanyService {
 
   addData(body): Observable<any[]> {
     let bodyString = JSON.stringify(body); // Stringify payload
-    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    let options = new RequestOptions({ headers: headers }); // Create a request option
-    return this.http.post(`${environment.apiUrl}/company`, bodyString, options) // ...using post request
+    return this.http.post(`${environment.apiUrl}/company`, bodyString, this.options) // ...using post request
       .map((res: Response) => { 
         return res.json()
       }) // ...and calling .json() on the response to return data
@@ -54,9 +56,7 @@ export class CompanyService {
 
   updateData(id, body): Observable<any[]> {
     let bodyString = JSON.stringify(id); // Stringify payload
-    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    let options = new RequestOptions({ headers: headers }); // Create a request option
-    return this.http.put(`${environment.apiUrl}/company/${id}`, bodyString, options) // ...using post request
+    return this.http.put(`${environment.apiUrl}/company/${id}`, bodyString, this.options) // ...using post request
       .map((res: Response) => { 
         return res.json()
       }) // ...and calling .json() on the response to return data
