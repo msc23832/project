@@ -5,9 +5,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { environment } from '../environments/environment';
 
-
 @Injectable()
-export class CompanyService {
+export class CustomerService {
 
   options: RequestOptions;
 
@@ -20,14 +19,15 @@ export class CompanyService {
   }
 
   loadItem(): Observable<any[]> {
-    return this.http.get(`${environment.apiUrl}/company`, this.options)
+    return this.http.get(`${environment.apiUrl}/company`)
       .map((res: Response) => {
         return res.json()
       })
       .catch((error: any) => Observable.throw(error));
   }
 
-  getItem(id): Observable<any> {
+  getItem(id): Observable<any[]> {
+    let bodyString = JSON.stringify(id);
     return this.http.get(`${environment.apiUrl}/company/findByID/${id}` , this.options)
       .map((res: Response) => {
         return res.json()
@@ -63,12 +63,11 @@ export class CompanyService {
   }
 
   deleteData(body): Observable<any> {
-    return this.http.delete(`${environment.apiUrl}/company/${body}`, this.options) // ...using post request
+    return this.http.delete(`${environment.apiUrl}/company/${body}`) // ...using post request
       .map((res: Response) => { 
         return res.json()
       }) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any 
   }
-
 
 }

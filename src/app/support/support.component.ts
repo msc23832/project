@@ -18,7 +18,7 @@ export class SupportComponent implements OnInit {
 
   ngOnInit() {
     $(".button-collapse").sideNav({
-      edge:'right',
+      edge:'left',
       closeOnClick: true,
       draggable: true
     });

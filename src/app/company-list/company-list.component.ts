@@ -23,7 +23,7 @@ export class CompanyListComponent implements OnInit {
     }];
     this.searchBox = {
       name : '',
-      rowPerPage : 5,
+      rowPerPage : 2,
       numPage : 0,
       total : 0
     };

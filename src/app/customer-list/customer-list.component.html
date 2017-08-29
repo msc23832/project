@@ -1,3 +1,40 @@
-<p>
-  customer-list works!
-</p>
+<nav>
+    <div class="nav-wrapper">
+        <form>
+            <div class="input-field">
+                <input id="search" type="search" name="search" [(ngModel)]="searchBox.name" required>
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons" (click)="search()">close</i>
+            </div>
+        </form>
+    </div>
+</nav>
+<div class="row">
+    <form class="col s12">
+        <table class="highlight table-responsive">
+            <thead>
+                <tr>
+                    <th>{{'companylist.edit' | translate}}</th>
+                    <th>{{'companylist.code' | translate}}</th>
+                    <th>{{'companylist.name' | translate}}</th>
+                    <th>{{'companylist.delete' | translate}}</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let data of Comp">
+                    <td><a class="btn-floating btn waves-effect waves-light " (click)="onEditClick(data._id)"><i class="material-icons ">mode_edit</i></a></td>
+                    <td>{{data.code}}</td>
+                    <td>{{data.name}}</td>
+                    <td><a class="btn-floating btn red waves-effect waves-light " (click)="onDeleteClick(data._id) "><i class="material-icons ">delete</i></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<ul class="pagination">
+    <li *ngFor="let p of paging; let i = index;" [ngClass]="{'active': i == searchBox.numPage}"><a (click)="gotoPage(i);">{{p}}</a></li>
+</ul>
+<div class="fixed-action-btn ">
+    <a class="btn-floating btn-large btn waves-effect waves-light red " (click)="onAddClick() "><i class="material-icons ">add</i></a>
+</div>
