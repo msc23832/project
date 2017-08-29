@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sass',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./sass.component.css']
 })
 export class SassComponent implements OnInit {
-
+  private currentLang = 'EN';
   private log = 'Log Out';
   show: boolean = true;
   isActive: boolean = true;
@@ -23,7 +24,12 @@ export class SassComponent implements OnInit {
   conditionExpression = "A";
   case1Exp = "B"; 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private tranService: TranslateService) { }
+
+  onChangeLang() {
+    this.currentLang = this.currentLang == "en"?"th":"en";
+    this.tranService.use(this.currentLang);
+  }
 
   onLogOut() {
     localStorage.removeItem('token');

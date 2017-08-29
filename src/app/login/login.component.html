@@ -6,13 +6,13 @@
         <div class="input-field col s12 m4 offset-m4">
             <i class="material-icons prefix">account_circle</i>
             <input id="email" name="Email" type="email" [(ngModel)]="Login.email" required class="validate">
-            <label for="email" data-error="Please Input Valid E-mail">E-mail</label>
+            <label for="email" data-error={{'errorEmail' | translate}}>{{'email' | translate}}</label>
         </div>
         <div class="input-field col s12 m4 offset-m4">
             <i class="material-icons prefix">lock</i>
             <input id="password" name="Password" type="password" [(ngModel)]="Login.password" required class="validate" pattern="\d{5}">
             <!--minlength="5"-->
-            <label for="password" data-error="Please Input Valid Password">Password</label>
+            <label for="password" data-error="xxxx">{{ 'password' | translate }}</label>
         </div>
     </form>
     <a class="waves-effect waves-light btn col s10 offset-s1 m4 offset-m4" (click)="login()">LOGIN</a>
