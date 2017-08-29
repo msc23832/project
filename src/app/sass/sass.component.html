@@ -5,14 +5,17 @@
         <a routerLink="/home" class="brand-logo center">PROJECT</a>
         <ul class="left hide-on-med-and-down">
             <li><a (click)="onLogOut()"><i class="material-icons left">send</i>{{log}}</a></li>
-            <li><a routerLink="/home"><i class="material-icons left">home</i>{{'home' | translate}}</a></li>
-            <li><a routerLink="/support/companylist"><i class="material-icons left">supervisor_account</i>{{'Support' | translate }}</a></li>
+            <li><a routerLink="/home"><i class="material-icons left">home</i>{{'sass.home' | translate}}</a></li>
+            <li><a routerLink="/support/companylist"><i class="material-icons left">supervisor_account</i>{{'sass.Support.support' | translate }}</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
             <li><a class="btn" (click)="onChangeLang();">{{currentLang}}</a></li>
         </ul>
         <ul class="side-nav light-blue accent-4" id="mobile-demo">
-            <li><a class="white-text" routerLink="/login"><i class="material-icons left">send</i>Log In</a></li>
-            <li><a class="white-text" routerLink="/home"><i class="material-icons left">home</i>Home</a></li>
-            <li><a class="white-text" routerLink="/support/companylist"><i class="material-icons left">supervisor_account</i>Support</a></li>
+            <li><a class="white-text" (click)="onLogOut()"><i class="material-icons left">send</i>{{log}}</a></li>
+            <li><a class="white-text" routerLink="/home"><i class="material-icons left">home</i>{{'sass.home' | translate}}</a></li>
+            <li><a class="white-text" routerLink="/support/companylist"><i class="material-icons left">supervisor_account</i>{{'sass.Support.support' | translate }}</a></li>
+            <li><a class="btn" (click)="onChangeLang();">{{currentLang}}</a></li>
         </ul>
     </div>
 

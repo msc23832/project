@@ -10,7 +10,7 @@ interface NodeModule {
 //   //sideNav(): JQuery;
 // }
 
-declare let Materialize : {
-  toast(text, time): any;
-  updateTextFields(): any;
-}
+// declare let Materialize : {
+//   toast(text, time): any;
+//   updateTextFields(): any;
+// }

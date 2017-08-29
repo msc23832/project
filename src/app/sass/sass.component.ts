@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./sass.component.css']
 })
 export class SassComponent implements OnInit {
-  private currentLang = 'EN';
+  private currentLang = 'TH';
   private log = 'Log Out';
   show: boolean = true;
   isActive: boolean = true;
@@ -38,7 +38,11 @@ export class SassComponent implements OnInit {
   }
 
   ngOnInit() {
-    // $(".button-collapse").sideNav();
+    $(".button-collapse").sideNav({
+      edge:'right',
+      closeOnClick: true,
+      draggable: true
+    });
   }
 
 }

@@ -1,7 +1,31 @@
 {
-    "email":"อีเมลล์",
-    "password":"พาสเวิร์ด",
-    "errorEmail":"อีเมลล์ผิดพลาด",
-    "home":"หน้าแรก",
-    "Support": "ช่วยเหลือ"
+    "sass": {
+        "home": "หน้าแรก",
+        "Support": {
+            "support": "ช่วยเหลือ",
+            "home": "หน้าแรก",
+            "company": "บริษัท",
+            "customer": "ลูกค้า",
+            "user": "ผู้ใช้",
+            "issue": "ปัญหา"
+        }
+    },
+    "login": {
+        "email": "อีเมลล์",
+        "password": "พาสเวิร์ด",
+        "errorEmail": "อีเมลล์ผิดพลาด",
+        "errorPassword": "รหัสผ่านผิดพลาด",
+        "emailholder": "โปรดกรอกอีเมลล์",
+        "passwordholder": "โปรดกรอกรหัสผ่าน"
+    },
+    "companylist": {
+        "edit": "แก้ไข",
+        "code": "รหัส",
+        "name": "ชื่อ",
+        "delete": "ลบ",
+        "company": {
+            "submit": "ยืนยัน",
+            "back": "กลับ"
+        }
+    }
 }

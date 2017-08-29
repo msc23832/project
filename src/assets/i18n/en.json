@@ -1,7 +1,31 @@
 {
-    "email":"E-Mail",
-    "password":"Password",
-    "errorEmail":"E-mail Invalid",
-    "home":"Home",
-    "Support": "Support"
+    "sass": {
+        "home": "Home",
+        "Support": {
+            "support": "Support",
+            "home": "Home",
+            "company": "Company",
+            "customer": "Customer",
+            "user": "User",
+            "issue": "Issue"
+        }
+    },
+    "login": {
+        "email": "E-Mail",
+        "password": "Password",
+        "errorEmail": "E-mail Invalid",
+        "errorPassword": "Password Invalid",
+        "emailholder": "Please Enter E-mail",
+        "passwordholder": "Please Enter Password"
+    },
+    "companylist": {
+        "edit": "Edit",
+        "code": "Code",
+        "name": "Name",
+        "delete": "Delete",
+        "company": {
+            "submit": "Submit",
+            "back": "Back"
+        }
+    }
 }
