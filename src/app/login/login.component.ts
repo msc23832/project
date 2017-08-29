@@ -29,8 +29,9 @@ export class LoginComponent implements OnInit {
       this.LoginService.doLogin(this.Login).subscribe((res) => {
         console.log(res);
         if (res.success) {
+          console.log('success');
           localStorage.setItem('token', res.token);
-          //this.router.navigate(['company']);
+          this.router.navigate(['support', 'issuelist']);
         } else {
           Materialize.toast(res.message, 1000);
         }
