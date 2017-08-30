@@ -54,7 +54,7 @@ export class CustomerComponent implements OnInit {
       this.customerService.updateItem(this.id, this.customer).subscribe(
         data => {
           Materialize.toast('Update item complete', 1000);
-          this.router.navigate(['support', 'customer-list']);
+          this.router.navigate(['support', 'customerlist']);
         },
         err => {
           console.log(err);
@@ -64,7 +64,7 @@ export class CustomerComponent implements OnInit {
       this.customerService.addItem(this.customer).subscribe(
         datas => {
           Materialize.toast('Add new item complete', 1000);
-          this.router.navigate(['support', 'customer-list']);
+          this.router.navigate(['support', 'customerlist']);
         },
         err => {
           console.log(err);
