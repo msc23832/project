@@ -16,7 +16,7 @@ export class UserComponent implements OnInit {
   user: User;
   mode: string = "ADD";
   id: string = "";
-  filesToUpload= [];
+  filesToUpload = [];
   imgUrl = '';
 
   constructor(
