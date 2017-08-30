@@ -27,5 +27,11 @@
             "submit": "Submit",
             "back": "Back"
         }
+    },
+    "customer" : {
+        "edit":"Edit",
+        "code":"Customer Code",
+        "name":"Customer Name",
+        "delete":"Delete"
     }
 }

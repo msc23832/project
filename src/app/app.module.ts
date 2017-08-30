@@ -1,3 +1,4 @@
+import { MaterializeModule } from "angular2-materialize";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -50,6 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TransformPipe
   ],
   imports: [
+    MaterializeModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

@@ -29,72 +29,69 @@ export class CustomerListComponent implements OnInit {
     this.paging = [];
   }
 
-  onAddClick() {
-    this.router.navigate(['support', 'company']);
-  }
-
-  onEditClick(id) {
-    this.router.navigate(['support', 'company', id]);
-    //localStorage.setItem('company', JSON.stringify(this.Comp));
-    //localStorage.removeItem();
-  }
-
-  onDeleteClick(id) {
-    this.CustomerService.deleteData(id).subscribe(
-        data => {
-          Materialize.toast('Delete Success', 4000);
-          this.loadData();
-          //this.router.navigate(['support', 'companylist']);
-        },
-        err => {
-          console.log(err);
-    });
-    //this.Comp.splice(id, 1);
-    //localStorage.setItem('company', JSON.stringify(this.Comp));
-    //localStorage.removeItem();
-  }
-
-  search(){
-    this.CustomerService.searchItem(this.searchBox).subscribe(data => {
-      this.Comp = data.rows;
-      this.searchBox.total = data.total;
-      this.renderPageData();
-    } , err => {
-      console.log(err);
-    });
-  }
+  customerData = [];
+  searchText = "";
+  numPage = 0;
+  rowPerPage = 2;
+  total = 0;
 
   ngOnInit() {
-    //this.loadData();
     this.search();
-    //if(localStorage.getItem('company')){
-    //  this.Comp = JSON.parse(localStorage.getItem('company'));
-    //}
   }
 
-  loadData(){
+  loadItem() {
     this.CustomerService.loadItem().subscribe(
-      data  =>  {
-        this.Comp  =  data;
+      datas => {
+        this.customerData = datas;
       },
-      err  =>  {
+      err => {
         console.log(err);
       });
-
   }
 
-  renderPageData(){
-    let allPage = Math.ceil(this.searchBox.total / this.searchBox.rowPerPage);
+  onAddButtonClick() {
+    this.router.navigate(['support', 'customer']);
+  }
+
+  onDeleteButtonClick(id) {
+    this.CustomerService.deleteItem(id).subscribe(
+      datas => {
+        this.loadItem();
+      },
+      err => {
+        console.log(err);
+      });
+  }
+
+  onEditButtonClick(id) {
+    this.router.navigate(['support', 'customer', id]);
+  }
+
+  search() {
+    let searchBody = {
+      searchText: this.searchText,
+      rowPerPage: this.rowPerPage,
+      numPage: this.numPage
+    }
+    this.CustomerService.search(searchBody).subscribe(data => {
+      this.customerData = data.rows;
+      this.total = data.total;
+      this.renderPaging();
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  renderPaging() {
+    let allPage = Math.ceil(this.total / this.rowPerPage);
     this.paging = [];
-    let i = 0;
-    while(i < allPage){
-      this.paging.push(i+1);
-      i++;
+    for (let i = 0; i < allPage; i++) {
+      this.paging.push(i + 1);
     }
   }
 
-  gotoPage(pId){
-    this.searchBox.numPage = pId;
+  gotoPage(pId) {
+    this.numPage = pId;
     this.search();
   }
 

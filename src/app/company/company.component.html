@@ -1,28 +1,20 @@
-<div class="row">
-    <form class="col s12">
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">vpn_key</i>
-                <input id="code" name="code" type="text" [(ngModel)]="Comp.code" required class="validate" pattern="\d{3}">
-                <label for="code" data-error="Please Input Valid Code">{{'companylist.code' | translate}}</label>
-            </div>
+<div class="container">
+    <div class="row" materialize="updateTextFields">
+        <div class="input-field col s12">
+           
+            <input id="code" name="code" type="text" [(ngModel)]="Comp.code"  class="validate" pattern="\d{3}">
+            <label for="code" data-error="Please Input Valid Code">{{'companylist.code' | translate}}</label>
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">account_circle</i>
-                <input id="name" name="name" type="text" [(ngModel)]="Comp.name" required class="validate">
-                <!--minlength="5"-->
-                <label for="name" data-error="Please Input Valid Name">{{'companylist.name' | translate}}</label>
-            </div>
+        <div class="input-field col s12">
+           
+            <input id="name" name="name" type="text" [(ngModel)]="Comp.name"  class="validate">
+            <!--minlength="5"-->
+            <label for="name" data-error="Please Input Valid Name">{{'companylist.name' | translate}}</label>
         </div>
-    </form>
-    <form class="col s12">
-        <div class="row">
 
-            <a class="waves-effect waves-light btn green" (click)="onSubmit()">{{'companylist.company.submit' | translate}}</a>
+        <a class="btn green" (click)="onSubmit()">{{'companylist.company.submit' | translate}}</a>
 
-            <a class="waves-effect waves-light btn red" routerLink='/support/companylist'>{{'companylist.company.back' | translate}}</a>
+        <a class="btn red" routerLink='/support/companylist'>{{'companylist.company.back' | translate}}</a>
 
-        </div>
-    </form>
+    </div>
 </div>
