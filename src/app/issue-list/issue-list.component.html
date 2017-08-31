@@ -28,11 +28,11 @@
   <tbody>
     <tr *ngFor="let i of issueData; let id = index;">
       <td><a class="grey-text text-darken-1">{{i.issueCode}}</a></td>
-      <td><a class="grey-text text-darken-1">{{i.company}}</a></td>
-      <td><a class="grey-text text-darken-1">{{i.cusName}}</a></td>
+      <td><a class="grey-text text-darken-1">{{i.compName}}</a></td>
+      <td><a class="grey-text text-darken-1">{{i.customerName}}</a></td>
       <td><a class="grey-text text-darken-1">{{i.userName}}</a></td>
       <td><a class="grey-text text-darken-1">{{i.status}}</a></td>
-      <td><a class="grey-text text-darken-1">{{i.date}}</a></td>
+      <td><a class="grey-text text-darken-1">{{i.issueDate}}</a></td>
       <td> <a class="btn-floating btn-small waves-effect waves-light cyan lighten-1" (click)="onEditButtonClick(i._id);">
            <i class="material-icons">edit</i></a></td>
       <td><a class="btn-floating btn-small waves-effect waves-light deep-orange accent-2" (click)="onDeleteButtonClick(i._id);">
@@ -41,11 +41,10 @@
   </tbody>
 </table>
 
-<ul class="pagination white">
-  <li class="waves-effect" *ngFor="let p of paging; let i = index;" [ngClass]="{'active' : i == numPage}" (click)="gotoPage(i);">
-    <a>  {{p}}</a>
-
-  </li>
+<ul class="pagination">
+  <li class="waves-effect" *ngFor="let p of paging;let i = index;" 
+      [ngClass]="{'active':i==numPage}" 
+      (click)="gotoPage(i);"><a >{{p}}</a></li>
 </ul>
 
 <div class="fixed-action-btn center">

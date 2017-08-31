@@ -16,6 +16,7 @@ import { IssueComponent } from './issue/issue.component';
 import { IssueListComponent } from './issue-list/issue-list.component';
 import { HomeComponent } from './home/home.component';
 import { LoginGuardService } from './login-guard.service';
+import { IssueattachComponent } from './issueattach/issueattach.component';
 
 const routes: Routes = [
 
@@ -63,8 +64,14 @@ const routes: Routes = [
       path: 'issue',
       component: IssueComponent
     }, {
+      path: 'issue/:id',
+      component: IssueComponent
+    }, {
       path: 'issuelist',
       component: IssueListComponent
+    }, {
+      path: 'issueattach/:id',
+      component: IssueattachComponent
     }]
   }
 ];

@@ -8,10 +8,18 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class IssueService {
 
-  constructor(private http: Http) { }
+  options: RequestOptions;
+
+  constructor(private http: Http) {
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': 'bearer ' + localStorage.getItem('token')
+    });
+    this.options = new RequestOptions({ headers: headers });
+  }
 
   loadItem(): Observable<any[]> { // environment.apiUrl + '/company'  สามารถเขียนแบบนี้แทนได้ เป็นการต่อ string
-    return this.http.get(`${environment.apiUrl}/issue`) //set urlไว้ที environment.ts 
+    return this.http.get(`${environment.apiUrl}/issue` , this.options) //set urlไว้ที environment.ts 
       .map((res: Response) => {
         return res.json()
       })
@@ -21,7 +29,7 @@ export class IssueService {
   findById(id): Observable<any> {
 
     return this.http.get(
-      `${environment.apiUrl}/issue/findById/${id}`)
+      `${environment.apiUrl}/issue/findById/${id}` , this.options)
       .map((res: Response) => {
         return res.json()
       })
@@ -29,13 +37,10 @@ export class IssueService {
   }
 
   updateItem(body, id): Observable<any> {
+    delete body._id;
     let bodyString = JSON.stringify(body);
-    let headers = new Headers({
-      'Content-Type': 'application/json'
-    });
-    let options = new RequestOptions({ headers: headers });
     return this.http.put(
-      `${environment.apiUrl}/issue/${id}`, bodyString, options)
+      `${environment.apiUrl}/issue/${id}`, bodyString , this.options)
       .map((res: Response) => {
         return res.json()
       })
@@ -44,12 +49,8 @@ export class IssueService {
 
   addItem(body): Observable<any> {
     let bodyString = JSON.stringify(body);
-    let headers = new Headers({
-      'Content-Type': 'application/json'
-    });
-    let options = new RequestOptions({ headers: headers });
     return this.http.post(
-      `${environment.apiUrl}/issue`, bodyString, options)
+      `${environment.apiUrl}/issue`, bodyString, this.options)
       .map((res: Response) => {
         return res.json()
       })
@@ -60,7 +61,7 @@ export class IssueService {
   deleteItem(id): Observable<any> {
 
     return this.http.delete(
-      `${environment.apiUrl}/issue/${id}`)
+      `${environment.apiUrl}/issue/${id}` , this.options)
       .map((res: Response) => {
         return res.json()
       })
@@ -70,12 +71,8 @@ export class IssueService {
 
   search(body): Observable<any> {
     let bodyString = JSON.stringify(body);
-    let headers = new Headers({
-      'Content-Type': 'application/json'
-    });
-    let options = new RequestOptions({ headers: headers });
     return this.http.post(
-      `${environment.apiUrl}/issue/search`, bodyString, options)
+      `${environment.apiUrl}/issue/search`, bodyString, this.options)
       .map((res: Response) => {
         return res.json()
       })

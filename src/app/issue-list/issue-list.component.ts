@@ -35,7 +35,7 @@ export class IssueListComponent implements OnInit {
   }
 
   onEditButtonClick(id){
-    this.router.navigate(['support','issue',id]);
+    this.router.navigate(['support','issue', id]);
   }
 
 

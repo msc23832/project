@@ -2,25 +2,33 @@
 
   <div class="row">
     <div class="input-field col  s15  m4 l4 ">
-      <input id="IssueCode" [(ngModel)]="issueCode" [readonly]="mode === 'EDIT'" type="text" class="validate grey-text text-darken-1"
+      <input id="IssueCode" [(ngModel)]="issue.issueCode" [readonly]="mode === 'EDIT'" type="text" class="validate grey-text text-darken-1"
         placeholder="Please input issue code">
       <label for="issueCode">Issue Code</label>
     </div>
   </div>
 
   <div class="row">
-    <select [(ngModel)]="compCode" materialize="material_select" [materializeSelectOptions]="companyData"> 
+    <select [(ngModel)]="issue.compName" materialize="material_select" [materializeSelectOptions]="companyData"> 
             <option value="" disabled selected>Choose your option</option>
             <option *ngFor="let comp of companyData;" 
-              [value]="comp.code">{{comp.name}}</option>
+              [value]="comp.name">{{comp.name}}</option>
           </select>
   </div>
 
   <div class="row">
-    <select [(ngModel)]="customerCode" materialize="material_select" [materializeSelectOptions]="customerData"> 
+    <select [(ngModel)]="issue.customerName" materialize="material_select" [materializeSelectOptions]="customerData"> 
             <option value="" disabled selected>Choose your option</option>
             <option *ngFor="let cus of customerData;" 
-              [value]="cus.custCode">{{cus.custName}}</option>
+              [value]="cus.custName">{{cus.custName}}</option>
+          </select>
+  </div>
+
+  <div class="row">
+    <select [(ngModel)]="issue.userName" materialize="material_select" [materializeSelectOptions]="customerData"> 
+            <option value="" disabled selected>Choose your option</option>
+            <option *ngFor="let user of UserData;" 
+              [value]="user.firstName">{{user.firstName}}</option>
           </select>
   </div>
 
@@ -29,13 +37,13 @@
 
       <label class="grey-text text-darken-1">Status :  </label>
 
-      <input name="group1" type="radio" [(ngModel)]="radio.group" value="inProcess" id="inProcess" />
+      <input name="status" type="radio" value="inProcess" [(ngModel)]="issue.status" id="inProcess" />
       <label for="inProcess">In Process</label>
 
-      <input name="group1" type="radio" [(ngModel)]="radio.group" value="complete" id="complete" />
+      <input name="status" type="radio" value="complete" [(ngModel)]="issue.status" id="complete" />
       <label for="complete">Complete</label>
 
-      <input name="group1" type="radio" [(ngModel)]="radio.group" value="delete" id="delete" />
+      <input name="status" type="radio" value="delete" [(ngModel)]="issue.status" id="delete" />
       <label for="delete">Delete</label>
 
     </form>
@@ -46,7 +54,7 @@
     <form class=" col s12  m10 l8">
       <div class="row">
         <div class="input-field col s12">
-          <textarea id="Issuedetail" class="materialize-textarea grey-text text-darken-1" type="textarea">{{issueDetail}}</textarea>
+          <textarea id="Issuedetail" name="IssueDetail" class="materialize-textarea grey-text text-darken-1" type="textarea" [(ngModel)]="issue.issueDetail"></textarea>
           <label for="issueDetail">Issue Detail</label>
         </div>
       </div>
@@ -55,7 +63,7 @@
 
   <div class="row">
     <div class="col s6  m5 l4 grey-text text-darken-1">
-      <input id="issueDate" type="text" [(ngModel)]="issueDate" class="datepicker" materialize="pickadate" [materializeParams]="[{closeOnSelect: true, format: 'dd/mm/yyyy'}]"
+      <input id="issueDate" type="text" [(ngModel)]="issue.issueDate" class="datepicker" materialize="pickadate" [materializeParams]="[{closeOnSelect: true, format: 'dd/mm/yyyy'}]"
       />
     </div>
   </div>

@@ -3,60 +3,42 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IssueService } from '../issue.service';
 import { CompanyService } from '../company.service';
 import { CustomerService } from '../customer.service';
+import { UploadService } from '../shared/user/upload.service';
+import { environment } from '../../environments/environment';
+import { UserService } from '../user.service';
+import { Issue } from './issue';
 
 @Component({
   selector: 'app-issue',
   templateUrl: './issue.component.html',
   styleUrls: ['./issue.component.css'],
-  providers: [IssueService, CompanyService, CustomerService]
+  providers: [IssueService, CompanyService, CustomerService, UploadService, UserService]
 })
 export class IssueComponent implements OnInit {
 
-  filesToUpload = [];
-
-  constructor(
-    private router: Router,
-    private activeRoute: ActivatedRoute,
-    private issueService: IssueService,
-    private companyService: CompanyService,
-    private customerService: CustomerService
-  ) { this.radio = {
-      group: '' 
-  }; }
-
-  private radio;
-  compCode: string;
-  customerCode: string;
-
+  private filesToUpload = [];
+  private issue: Issue;
+  private issueData;
+  private companyData;
+  private customerData;
+  private UserData;
   mode: string = 'ADD';
-  chkStatus: string;
-  id: number = 0;
-  issueCode: string;
-  issueDetail: string;
-  company: string;
-  cusName: string;
-  userName: String;
-  issueDate: string;
-  status: string;
-  issueData = [];
-  companyData = [];
-  customerData = [];
+  id: number;
+
+  constructor(private router: Router, private activeRoute: ActivatedRoute, private issueService: IssueService, private companyService: CompanyService, private customerService: CustomerService, private uploadService: UploadService, private UserService: UserService) {
+    this.issue = new Issue();
+  }
 
   ngOnInit() {
     this.GetCustomer();
     this.GetCompany();
+    this.GetUsers();
     this.activeRoute.params.subscribe(param => {
       if (param['id']) {
         let id = param['id'];
         this.issueService.findById(id).subscribe(
           issue => {
-            this.chkStatus = issue.status;
-            this.issueCode = issue.issueCode;
-            this.issueDetail = issue.issueDetail;
-            this.company = issue.company;
-            this.cusName = issue.cusName;
-            this.userName = issue.userName;
-            this.issueDate = issue.issueDate;
+            this.issue = issue;
             //this.status = issue.status;
             //this.company = customer.company;
           },
@@ -72,25 +54,18 @@ export class IssueComponent implements OnInit {
 
 
   onSave() {
-    let cus = {
 
-      issueCode: this.issueCode,
-      issueDetail: this.issueDetail,
-      company: this.company,
-      cusName: this.cusName,
-      userName: this.userName,
-      issueDate: this.issueDate,
-      status: this.status
-    }
+    console.log(this.issue);
 
     let company: Array<any> = [];
     if (localStorage.getItem('issue')) {
       company = JSON.parse(localStorage.getItem('issue'));
     }
     if (this.mode == "EDIT") {
-      this.issueService.updateItem(cus, this.id).subscribe(
+      this.issueService.updateItem(this.issue, this.id).subscribe(
         datas => {
           Materialize.toast('update item complete', 1000);
+          this.upload();
           this.router.navigate(['support', 'issuelist']);
         },
         err => {
@@ -98,9 +73,10 @@ export class IssueComponent implements OnInit {
         });
 
     } else {
-      this.issueService.addItem(cus).subscribe(
+      this.issueService.addItem(this.issue).subscribe(
         datas => {
           Materialize.toast('Add new item complete', 1000);
+          this.upload();
           this.router.navigate(['support', 'issuelist']);
         },
         err => {
@@ -130,17 +106,14 @@ export class IssueComponent implements OnInit {
       });
   }
 
-  doOnchangeComp(value) {
-    console.log(value);
-    this.company = value;
-  }
-  doOnchangeCus(value) {
-    console.log(value);
-    this.cusName = value;
-  }
-  onSelectionChange(value) {
-    console.log(value);
-    this.status = value;
+  GetUsers() {
+    this.UserService.loadItem().subscribe(
+      datas => {
+        this.UserData = datas;
+      },
+      err => {
+        console.log(err);
+      });
   }
 
   fileChangeEvent(fileInput) {
@@ -154,6 +127,20 @@ export class IssueComponent implements OnInit {
         //this.imgUrl = event.target["result"];
       }
       reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  upload() {
+    console.log(this.filesToUpload);
+    if (this.filesToUpload.length > 0) {
+      this.uploadService.makeFileRequest(
+        "avatar",
+        environment.apiUrl + "/user/profile/" + this.id,
+        [], this.filesToUpload).subscribe((res) => {
+          this.router.navigate(['support', 'issuelist']);
+        });
+    } else {
+      this.router.navigate(['support', 'issuelist']);
     }
   }
 
