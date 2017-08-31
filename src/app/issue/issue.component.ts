@@ -54,9 +54,6 @@ export class IssueComponent implements OnInit {
 
 
   onSave() {
-
-    console.log(this.issue);
-
     let company: Array<any> = [];
     if (localStorage.getItem('issue')) {
       company = JSON.parse(localStorage.getItem('issue'));
@@ -65,8 +62,7 @@ export class IssueComponent implements OnInit {
       this.issueService.updateItem(this.issue, this.id).subscribe(
         datas => {
           Materialize.toast('update item complete', 1000);
-          this.upload();
-          this.router.navigate(['support', 'issuelist']);
+          this.router.navigate(['support', 'issueattach', this.id]);
         },
         err => {
           console.log(err);
@@ -76,8 +72,7 @@ export class IssueComponent implements OnInit {
       this.issueService.addItem(this.issue).subscribe(
         datas => {
           Materialize.toast('Add new item complete', 1000);
-          this.upload();
-          this.router.navigate(['support', 'issuelist']);
+          this.router.navigate(['support', 'issueattach' , datas._id]);
         },
         err => {
           console.log(err);
@@ -114,34 +109,6 @@ export class IssueComponent implements OnInit {
       err => {
         console.log(err);
       });
-  }
-
-  fileChangeEvent(fileInput) {
-    this.filesToUpload = <Array<File>>fileInput.target.files;
-  }
-
-  readUrl(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-      reader.onload = (event) => {
-        //this.imgUrl = event.target["result"];
-      }
-      reader.readAsDataURL(event.target.files[0]);
-    }
-  }
-
-  upload() {
-    console.log(this.filesToUpload);
-    if (this.filesToUpload.length > 0) {
-      this.uploadService.makeFileRequest(
-        "avatar",
-        environment.apiUrl + "/user/profile/" + this.id,
-        [], this.filesToUpload).subscribe((res) => {
-          this.router.navigate(['support', 'issuelist']);
-        });
-    } else {
-      this.router.navigate(['support', 'issuelist']);
-    }
   }
 
 }

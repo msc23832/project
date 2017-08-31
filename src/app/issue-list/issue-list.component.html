@@ -22,6 +22,7 @@
       <th><a class="grey-text text-darken-2">date</a></th>
       <th><a class="grey-text text-darken-2">Edit</a></th>
       <th><a class="grey-text text-darken-2">Delete</a></th>
+      <th><a class="grey-text text-darken-2">Attach</a></th>
     </tr>
   </thead>
 
@@ -37,6 +38,8 @@
            <i class="material-icons">edit</i></a></td>
       <td><a class="btn-floating btn-small waves-effect waves-light deep-orange accent-2" (click)="onDeleteButtonClick(i._id);">
            <i class="material-icons">delete</i></a></td>
+      <td><a class="btn-floating btn-small waves-effect waves-light accent-2" (click)="onAttachFileClick(i._id);">
+           <i class="material-icons">Attachments</i></a></td>
     </tr>
   </tbody>
 </table>
