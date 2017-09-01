@@ -24,8 +24,8 @@
             <tbody>
                 <tr *ngFor="let data of Comp">
                     <td><a class="btn-floating btn waves-effect waves-light " (click)="onEditClick(data._id)"><i class="material-icons ">mode_edit</i></a></td>
-                    <td>{{data.code}}</td>
-                    <td>{{data.name}}</td>
+                    <td>{{data.comp_code}}</td>
+                    <td>{{data.comp_name}}</td>
                     <td><a class="btn-floating btn red waves-effect waves-light " (click)="onDeleteClick(data._id) "><i class="material-icons ">delete</i></a></td>
                 </tr>
             </tbody>

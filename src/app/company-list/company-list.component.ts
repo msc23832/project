@@ -18,12 +18,12 @@ export class CompanyListComponent implements OnInit {
 
   constructor(private  router: Router, private CompanyService: CompanyService) {
     this.Comp = [{
-      code: '',
-      name: ''
+      comp_code: '',
+      comp_name: ''
     }];
     this.searchBox = {
       name : '',
-      rowPerPage : 2,
+      rowPerPage : 10,
       numPage : 0,
       total : 0
     };
